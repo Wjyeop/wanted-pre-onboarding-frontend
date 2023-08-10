@@ -55,3 +55,15 @@ div div {
 .todo button{
   margin: 5px 10px;
 }
+
+@media (max-width: 900px) {
+  body {
+    zoom: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    zoom: 2;
+  }
+}

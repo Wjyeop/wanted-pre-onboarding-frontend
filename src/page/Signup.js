@@ -74,6 +74,11 @@ function Signup() {
                     onClick={handleSubmit}>
                     회원가입
                 </button>
+                {!isButtonDisabled ? null :
+                <p>
+                    *이메일 조건: @포함<br></br>
+                    *비밀번호 조건: 8자 이상
+                </p>}
             </div>
         </div>
     )
