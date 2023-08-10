@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"
 
 function Signin() {
 
@@ -12,8 +13,8 @@ function Signin() {
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
             navigate('/todo')
-        }
-      }, [])
+        }// eslint-disable-next-line
+    }, [])
 
     function onChangeEmail (e) {
         setEmail(e.target.value)
@@ -27,34 +28,39 @@ function Signin() {
 
     const handleInputChange = () => {
         const isEmailValid = email.includes('@');
-        const isPasswordValid = pwd.length >= 8;
+        const isPasswordValid = pwd.length > 7;
         setIsButtonDisabled(!(isEmailValid && isPasswordValid));
     };
 
-    async function handleSubmit() {
-        const data = {
-          email: email,
-          password: pwd
-        };
-        
-        const url = 'https://www.pre-onboarding-selection-task.shop/auth/signin';
-        
-        try {
-          const response = await axios.post(url, data);
-          localStorage.setItem('token',response.data.access_token)
-          navigate('/todo')
-        } catch (error) {
-          console.error('에러 발생:', error);
-        }
+    function handleSubmit() {
+        axios({
+            url:`https://www.pre-onboarding-selection-task.shop/auth/signin`,
+            method:'post',
+            headers: {
+                "Content-Type": `application/json`,
+            },
+            data: {
+                email: email,
+                password: pwd
+            }
+        }).then(res=>{
+            localStorage.setItem('token',res.data.access_token)
+            navigate('/todo')
+        }).catch(err=>{
+            console.error('에러 발생:', err);
+            alert(err.response.data.message)
+        })
     }
       
 
     return(
-        <div>
+        <div className='signin'>
+            <h1>로그인</h1>
             <div>
-                로그인
+                <Link to="/">대시보드</Link>
+                <Link to="/signup">회원가입</Link>
             </div>
-            <div>
+            <div className='form'>
                 <label>이메일:</label>
                 <input 
                     data-testid="email-input"

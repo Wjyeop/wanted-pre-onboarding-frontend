@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Signup() {
 
@@ -12,8 +13,8 @@ function Signup() {
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
             navigate('/todo')
-        }
-      }, [])
+        }// eslint-disable-next-line
+    }, [])
 
     function onChangeEmail (e) {
         setEmail(e.target.value)
@@ -30,30 +31,34 @@ function Signup() {
         const isPasswordValid = pwd.length > 7;
         setIsButtonDisabled(!(isEmailValid && isPasswordValid));
     };
-
-    async function handleSubmit() {
-        const data = {
-          email: email,
-          password: pwd
-        };
-        
-        const url = 'https://www.pre-onboarding-selection-task.shop/auth/signup';
-        
-        try {
-          const response = await axios.post(url, data);
-          console.log(response)
-          navigate('/signin')
-        } catch (error) {
-          console.error('에러 발생:', error);
-        }
-      }
+    
+    function handleSubmit() {
+        axios({
+            url:`https://www.pre-onboarding-selection-task.shop/auth/signup`,
+            method:'post',
+            headers: {
+                "Content-Type": `application/json`,
+            },
+            data: {
+                email: email,
+                password: pwd
+            }
+        }).then(res=>{
+            navigate('/signin')
+        }).catch(err=>{
+            console.error('에러 발생:', err);
+            alert(err.response.data.message)
+        })
+    }
 
     return(
-        <div>
+        <div className='signup'>
+            <h1>회원가입</h1>
             <div>
-                회원가입
+                <Link to="/signin">로그인</Link>
+                <Link to="/">대시보드</Link>
             </div>
-            <div>
+            <div className='form'>
                 <label>이메일:</label>
                 <input 
                     data-testid="email-input"

@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+body {
+  background-color: beige; 
+  font-family: Arial, sans-serif;
+  margin: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  padding-left: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+div div {
+  padding: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dashboard div a {
+  margin-right: 30px;
+  padding: 5px 10px 5px 10px;
+  text-decoration:none;
+  color: black;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.signin div input{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.signin div a {
+  margin-right: 30px;
+  padding: 5px 10px 5px 10px;
+  text-decoration:none;
+  color: black;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup div a {
+  margin-right: 30px;
+  padding: 5px 10px 5px 10px;
+  text-decoration:none;
+  color: black;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.signup div input{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.todo button{
+  margin: 5px 10px;
 }
