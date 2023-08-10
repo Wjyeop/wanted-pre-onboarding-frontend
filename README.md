@@ -4,3 +4,5 @@
 지원자 : 원준엽
 
 npm install & npm start
+
+https://wjyeop-wanted-pre-onboarding-frontend.netlify.app
