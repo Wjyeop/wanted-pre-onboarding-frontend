@@ -67,7 +67,9 @@ function Signin() {
                     placeholder='아이디 입력'
                     onChange={onChangeEmail}/>
                 <label>비밀번호:</label>
-                <input data-testid="password-input" 
+                <input 
+                    type='password'
+                    data-testid="password-input" 
                     placeholder='비밀번호 입력'
                     onChange={onChangePwd}/>
                 <button 
